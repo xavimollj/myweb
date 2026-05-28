@@ -3,297 +3,351 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Guia del proyecto - Gastrodigital Hub</title>
+  <title>Gastrodigital Hub — Guía del proyecto</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --black: #0D0D0D;
-      --dark-card: #1A1A1A;
-      --dark-border: #2A2A2A;
+      --dark: #141414;
+      --card: #1A1A1A;
+      --border: #2A2A2A;
       --teal: #3ABDB5;
       --coral: #C93C3C;
-      --white-90: rgba(255,255,255,0.92);
-      --white-60: rgba(255,255,255,0.6);
-      --white-40: rgba(255,255,255,0.4);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.55);
+      --dim: rgba(255,255,255,0.35);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Montserrat', sans-serif;
-      background: var(--black); color: var(--white-90);
-      line-height: 1.7; padding: 3rem 1.5rem;
+      background: var(--black);
+      color: var(--text);
       -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
     }
-    .wrap { max-width: 780px; margin: 0 auto; }
+    .wrap { max-width: 820px; margin: 0 auto; padding: 4rem 1.5rem 6rem; }
 
-    header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--dark-border); }
-    .logo { color: var(--teal); font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
-    h1 {
-      font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900;
-      text-transform: uppercase; line-height: 1.15;
+    /* HEADER */
+    .header { text-align: center; margin-bottom: 4rem; }
+    .header img { height: 64px; border-radius: 12px; margin: 0 auto 1.5rem; }
+    .header h1 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 900; text-transform: uppercase;
+      letter-spacing: -0.01em; line-height: 1.1;
+      margin-bottom: 0.75rem;
     }
-    .lead { color: var(--white-60); margin-top: 1rem; font-size: 1.05rem; font-weight: 500; }
+    .header h1 em { color: var(--teal); font-style: normal; }
+    .header p { color: var(--muted); font-size: 0.95rem; font-weight: 500; }
 
+    /* PROGRESS BAR */
+    .progress {
+      display: flex; align-items: center; gap: 0.75rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.25rem;
+      margin-bottom: 3rem;
+    }
+    .progress-bar {
+      flex: 1; height: 6px; background: var(--border);
+      border-radius: 99px; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; width: 70%;
+      background: linear-gradient(90deg, var(--teal), #5dd4cb);
+      border-radius: 99px;
+    }
+    .progress-text {
+      font-size: 0.78rem; font-weight: 800;
+      color: var(--teal); white-space: nowrap;
+    }
+
+    /* SECTIONS */
     section { margin-bottom: 3.5rem; }
+    .label {
+      display: inline-block; font-size: 0.7rem;
+      font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.12em; margin-bottom: 0.6rem;
+      padding: 0.25rem 0.65rem; border-radius: 6px;
+    }
+    .label-teal { background: rgba(58,189,181,0.12); color: var(--teal); }
+    .label-coral { background: rgba(201,60,60,0.12); color: var(--coral); }
     h2 {
-      font-size: 1.3rem; font-weight: 800;
-      text-transform: uppercase; color: var(--teal);
-      margin-bottom: 1.25rem; padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--dark-border);
-      letter-spacing: 0.02em;
+      font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+      font-weight: 900; text-transform: uppercase;
+      margin-bottom: 1.5rem; line-height: 1.2;
     }
-    h3 {
-      font-size: 1rem; font-weight: 800; color: var(--white-90);
-      margin-top: 1.5rem; margin-bottom: 0.6rem; text-transform: uppercase;
-    }
-    p { color: var(--white-60); margin-bottom: 1rem; font-size: 0.97rem; }
-    p strong { color: var(--white-90); font-weight: 700; }
-    ul, ol { color: var(--white-60); padding-left: 1.5rem; margin-bottom: 1rem; font-size: 0.97rem; }
-    li { margin-bottom: 0.5rem; }
-    li strong { color: var(--white-90); }
+    h2 em { color: var(--teal); font-style: normal; }
+    p { color: var(--muted); margin-bottom: 1rem; font-size: 0.94rem; }
+
+    /* CARD GRID */
+    .grid { display: grid; gap: 0.75rem; }
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 640px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
 
     .card {
-      background: var(--dark-card); border: 1px solid var(--dark-border);
-      border-radius: 12px; padding: 1.5rem; margin: 1rem 0;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem 1.4rem;
+      transition: border-color 0.25s, transform 0.25s;
     }
-    .card h3 { margin-top: 0; color: var(--teal); }
-    .card.coral { border-color: rgba(201,60,60,0.3); }
-    .card.coral h3 { color: var(--coral); }
-
-    code {
-      background: var(--dark-card); color: var(--teal);
-      padding: 0.15rem 0.45rem; border-radius: 4px;
-      font-family: 'Courier New', monospace; font-size: 0.88em;
+    .card:hover { border-color: var(--teal); transform: translateY(-2px); }
+    .card-icon { font-size: 1.4rem; margin-bottom: 0.6rem; }
+    .card h3 {
+      font-size: 0.88rem; font-weight: 800;
+      text-transform: uppercase; margin-bottom: 0.4rem;
+      letter-spacing: 0.02em;
     }
-    pre {
-      background: var(--dark-card); border: 1px solid var(--dark-border);
-      border-radius: 8px; padding: 1rem; overflow-x: auto;
-      font-family: 'Courier New', monospace; font-size: 0.85rem;
-      color: var(--white-60); margin: 1rem 0;
+    .card p { font-size: 0.83rem; color: var(--muted); margin: 0; }
+
+    /* CHECKLIST */
+    .check-list { list-style: none; padding: 0; }
+    .check-list li {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem; color: var(--text);
     }
-    pre code { background: none; padding: 0; color: inherit; }
+    .check-list li:last-child { border-bottom: none; }
+    .check-list li::before {
+      content: '\2713'; color: var(--teal);
+      font-weight: 900; flex-shrink: 0;
+      width: 22px; height: 22px;
+      background: rgba(58,189,181,0.12);
+      border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 0.75rem;
+    }
+    .check-list.pending li::before {
+      content: '\25CB'; color: var(--coral);
+      background: rgba(201,60,60,0.10);
+    }
 
-    a { color: var(--teal); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
-    a:hover { border-bottom-color: var(--teal); }
+    /* COLOR DOTS */
+    .colors { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
+    .color {
+      display: flex; align-items: center; gap: 0.4rem;
+      background: var(--card); border: 1px solid var(--border);
+      padding: 0.4rem 0.7rem; border-radius: 8px;
+      font-size: 0.72rem; font-weight: 700;
+      color: var(--muted);
+    }
+    .swatch {
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 1px solid var(--border);
+    }
 
-    .badge {
-      display: inline-block; background: rgba(58,189,181,0.15);
-      color: var(--teal); font-size: 0.7rem; font-weight: 800;
+    /* PILL */
+    .pill {
+      display: inline-block; font-size: 0.7rem; font-weight: 800;
       padding: 0.25rem 0.6rem; border-radius: 99px;
-      text-transform: uppercase; letter-spacing: 0.05em;
-      margin-left: 0.5rem; vertical-align: middle;
+      background: rgba(58,189,181,0.15); color: var(--teal);
+      text-transform: uppercase; letter-spacing: 0.04em;
     }
-    .badge.coral { background: rgba(201,60,60,0.15); color: var(--coral); }
-    .badge.gray { background: rgba(255,255,255,0.08); color: var(--white-60); }
 
-    .palette { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.75rem; margin: 1rem 0; }
-    .swatch { border-radius: 8px; padding: 1rem; text-align: center; font-size: 0.75rem; font-weight: 700; }
-    .swatch span { display: block; margin-top: 0.3rem; opacity: 0.7; font-size: 0.7rem; }
-
-    .step-list { list-style: none; padding: 0; counter-reset: step; }
-    .step-list li {
-      position: relative; padding-left: 3rem; margin-bottom: 1rem;
-      counter-increment: step;
+    /* BIG NUMBER */
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1.5rem 0; }
+    .stat {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem; text-align: center;
     }
-    .step-list li::before {
-      content: counter(step); position: absolute; left: 0; top: 0;
-      width: 2rem; height: 2rem; border-radius: 50%;
+    .stat-num {
+      font-size: 1.8rem; font-weight: 900; color: var(--teal);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.65rem; font-weight: 700;
+      text-transform: uppercase; color: var(--muted);
+      margin-top: 0.3rem; letter-spacing: 0.04em;
+    }
+
+    /* LINK */
+    a.link {
+      color: var(--teal); text-decoration: none;
+      border-bottom: 1px solid rgba(58,189,181,0.4);
+      font-weight: 600;
+    }
+    a.link:hover { border-bottom-color: var(--teal); }
+
+    /* QUOTE */
+    .quote {
+      border-left: 3px solid var(--teal);
+      padding: 0.75rem 0 0.75rem 1.25rem;
+      margin: 1.25rem 0;
+      font-style: italic; color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    /* CTA */
+    .cta-box {
+      background: linear-gradient(135deg, rgba(58,189,181,0.08), rgba(201,60,60,0.05));
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem 1.75rem;
+      text-align: center; margin-top: 2rem;
+    }
+    .cta-box h3 {
+      font-size: 1.1rem; font-weight: 900;
+      text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+    .cta-box p { font-size: 0.88rem; margin-bottom: 1.25rem; }
+    .btn {
+      display: inline-block;
       background: var(--teal); color: var(--black);
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: 0.85rem;
+      font-weight: 800; font-size: 0.85rem;
+      padding: 0.75rem 1.5rem; border-radius: 8px;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      text-decoration: none; transition: all 0.2s;
     }
+    .btn:hover { background: #5dd4cb; transform: translateY(-2px); }
 
+    /* FOOTER */
     footer {
       margin-top: 4rem; padding-top: 2rem;
-      border-top: 1px solid var(--dark-border);
-      color: var(--white-40); font-size: 0.82rem; text-align: center;
+      border-top: 1px solid var(--border);
+      text-align: center; color: var(--dim);
+      font-size: 0.78rem;
     }
-    footer a { color: var(--teal); }
-
-    .toc {
-      background: var(--dark-card); border: 1px solid var(--dark-border);
-      border-radius: 12px; padding: 1.25rem 1.5rem; margin: 2rem 0;
+    code {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 0.1rem 0.4rem; border-radius: 4px;
+      font-size: 0.82em; font-family: 'Courier New', monospace;
+      color: var(--teal);
     }
-    .toc h3 { margin-top: 0; font-size: 0.8rem; color: var(--white-40); letter-spacing: 0.1em; }
-    .toc ol { padding-left: 1.25rem; margin: 0.5rem 0 0; }
-    .toc li { margin-bottom: 0.3rem; font-size: 0.92rem; }
-    .toc a { color: var(--white-90); }
   </style>
 </head>
-
 <body>
 <div class="wrap">
 
-<header>
-  <div class="logo">Gastrodigital Hub &middot; documentacion interna</div>
-  <h1>Guia del proyecto</h1>
-  <p class="lead">Resumen de todo lo construido hasta ahora: marca, web, tecnologia, despliegue y proximos pasos.</p>
-</header>
-
-<div class="toc">
-  <h3>Indice</h3>
-  <ol>
-    <li><a href="#vision">Vision del proyecto</a></li>
-    <li><a href="#marca">Identidad de marca</a></li>
-    <li><a href="#valor">Tres propuestas de valor</a></li>
-    <li><a href="#web">Estructura de la web</a></li>
-    <li><a href="#tech">Tecnologia utilizada</a></li>
-    <li><a href="#imagenes">Generacion de imagenes con IA</a></li>
-    <li><a href="#deploy">Despliegue (GitHub + Vercel)</a></li>
-    <li><a href="#pendiente">Estado y pendiente</a></li>
-  </ol>
-</div>
-
-<section id="vision">
-  <h2>1. Vision del proyecto</h2>
-  <p><strong>Gastrodigital Hub</strong> es la marca personal de Xavi, consultor de marketing local especializado en restauracion y gastronomia en Barcelona. La web sirve para captar clientes (restaurantes y bares) y presentar tres herramientas SaaS que el cliente podra activar desde su propio panel.</p>
-  <p><strong>Objetivo del consultor:</strong> escalar de 4 a 8 clientes activos en 6 meses, y a 5.000&euro;/mes en 12 meses.</p>
-  <p><strong>Posicionamiento:</strong> especialista en SEO local + gestion automatizada para restauracion. Tono profesional pero cercano, sin tecnicismos.</p>
-</section>
-
-<section id="marca">
-  <h2>2. Identidad de marca</h2>
-  <p>Toda la identidad visual se extrajo del feed de Instagram <a href="https://instagram.com/gastrodigital.hub" target="_blank">@gastrodigital.hub</a> y del logo proporcionado.</p>
-
-  <h3>Paleta de colores</h3>
-  <div class="palette">
-    <div class="swatch" style="background:#0D0D0D;color:#fff;border:1px solid #2A2A2A">#0D0D0D <span>negro base</span></div>
-    <div class="swatch" style="background:#3ABDB5;color:#000">#3ABDB5 <span>teal primario</span></div>
-    <div class="swatch" style="background:#C93C3C;color:#fff">#C93C3C <span>coral acento</span></div>
-    <div class="swatch" style="background:#1E3A4A;color:#fff">#1E3A4A <span>navy logo</span></div>
-    <div class="swatch" style="background:#E8DDD5;color:#000">#E8DDD5 <span>cream logo</span></div>
+  <!-- HEADER -->
+  <div class="header">
+    <img src="LOGO1.jpg" alt="Gastrodigital Hub">
+    <h1>Guia del proyecto<br><em>Gastrodigital Hub</em></h1>
+    <p>Resumen de todo lo construido en la sesion del 28 mayo 2026</p>
   </div>
 
-  <h3>Tipografia</h3>
-  <p><strong>Montserrat</strong> en pesos 400-900. Titulares en peso 800-900 y mayusculas; cuerpo en peso 500.</p>
-
-  <h3>Estetica</h3>
-  <ul>
-    <li><strong>Dark mode</strong> dominante (fondo negro/casi-negro)</li>
-    <li>Tipografia <strong>bold y mayusculas</strong> en titulares</li>
-    <li>Acentos <strong>teal</strong> para herramientas tecnicas y <strong>coral</strong> para problemas/alertas</li>
-    <li>Tono profesional, directo, educativo</li>
-  </ul>
-</section>
-
-<section id="valor">
-  <h2>3. Tres propuestas de valor</h2>
-  <p>Diferenciadores frente a la competencia. Cada cliente podra activarlos desde su panel privado.</p>
-
-  <div class="card">
-    <h3>Herramienta 01 &middot; App de Menu con IA + Club VIP <span class="badge">teal</span></h3>
-    <p>El restaurante hace una foto al plato. La IA detecta automaticamente el nombre, redacta una descripcion apetecible y actualiza la web en segundos. Sin codigo.</p>
-    <p><strong>Club VIP gratuito:</strong> los clientes finales reciben el menu del dia por WhatsApp, Telegram o email. Fidelizacion sin esfuerzo.</p>
+  <!-- PROGRESS -->
+  <div class="progress">
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+    <div class="progress-text">70% completado</div>
   </div>
 
-  <div class="card coral">
-    <h3>Herramienta 02 &middot; Sistema de Resenas 360&deg; <span class="badge coral">coral</span></h3>
-    <p>No solo respuestas: captacion etica con <strong>QR + tarjetas NFC + CRM interno</strong>. Las resenas llegan solas y se gestionan solas. Respuestas automaticas con el tono de cada restaurante. 100% dentro de las politicas de Google.</p>
+  <!-- 1. LA MARCA -->
+  <section>
+    <span class="label label-teal">01 &middot; La marca</span>
+    <h2>Que es <em>Gastrodigital Hub</em></h2>
+    <p>Marca personal de Xavi para servicios de marketing digital y SEO local <strong>dirigidos exclusivamente a restaurantes y bares de Barcelona</strong>.</p>
+    <div class="quote">
+      "Hago que tu restaurante aparezca en Google cuando alguien busca donde comer cerca."
+    </div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Anos experiencia</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">BCN</div>
+        <div class="stat-label">Mercado objetivo</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Restauracion</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. IDENTIDAD VISUAL -->
+  <section>
+    <span class="label label-teal">02 &middot; Identidad visual</span>
+    <h2>Paleta y estilo<br>extraidos de tu Instagram</h2>
+    <p>Estetica <strong>dark mode</strong>, bold, tipografia pesada Montserrat 800-900, titulares en mayusculas. Tono profesional pero cercano.</p>
+    <div class="colors">
+      <div class="color"><span class="swatch" style="background:#0D0D0D"></span> #0D0D0D</div>
+      <div class="color"><span class="swatch" style="background:#3ABDB5"></span> #3ABDB5</div>
+      <div class="color"><span class="swatch" style="background:#C93C3C"></span> #C93C3C</div>
+      <div class="color"><span class="swatch" style="background:#1E3A4A"></span> #1E3A4A</div>
+      <div class="color"><span class="swatch" style="background:#E8DDD5"></span> #E8DDD5</div>
+    </div>
+  </section>
+
+  <!-- 3. LAS 3 HERRAMIENTAS -->
+  <section>
+    <span class="label label-coral">03 &middot; Las 3 herramientas SaaS</span>
+    <h2>Lo que nos diferencia<br>de la competencia</h2>
+    <p>Cada cliente activa estas herramientas desde su panel, sin tecnicismos y sin depender de nadie:</p>
+    <div class="grid grid-3" style="margin-top:1.25rem">
+      <div class="card">
+        <div class="card-icon">&#x1F4F8;</div>
+        <h3>Menu con IA</h3>
+        <p>Foto del plato &rarr; IA detecta nombre y descripcion &rarr; web y Google se actualizan solos. Incluye Club VIP por WhatsApp / Telegram / email.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#x2B50;</div>
+        <h3>Resenas 360&deg;</h3>
+        <p>Captacion con QR + NFC + CRM interno. Respuestas automaticas con tu tono. 100% etico y dentro de las politicas de Google.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">&#x1F4C5;</div>
+        <h3>Reservas Smart</h3>
+        <p>Recordatorios automaticos al cliente (dias, dia y horas antes). Avisos al restaurante en tiempo real. Menos no-shows, mesas siempre llenas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. ESTRUCTURA WEB -->
+  <section>
+    <span class="label label-teal">04 &middot; Estructura de la web</span>
+    <h2>Como esta organizada</h2>
+    <ul class="check-list">
+      <li><strong>Hero</strong> &mdash; Propuesta de valor + CTA WhatsApp + panel con las 3 herramientas</li>
+      <li><strong>Problema</strong> &mdash; 4 dolores del restaurador (invisible en Maps, menu desactualizado, resenas sin gestionar, no-shows)</li>
+      <li><strong>Herramientas</strong> &mdash; Bloques alternados teal/coral con descripcion y bullets</li>
+      <li><strong>Proceso</strong> &mdash; 4 pasos: consulta &rarr; auditoria &rarr; activacion &rarr; seguimiento</li>
+      <li><strong>Sobre Xavi</strong> &mdash; Quien soy y por que restauracion</li>
+      <li><strong>CTA final</strong> &mdash; WhatsApp + email</li>
+      <li><strong>Footer</strong> &mdash; Contacto + Instagram</li>
+    </ul>
+  </section>
+
+  <!-- 5. HECHO -->
+  <section>
+    <span class="label label-teal">05 &middot; Hecho</span>
+    <h2>Lo que ya esta listo</h2>
+    <ul class="check-list">
+      <li>Landing page completa en HTML + CSS (sin frameworks)</li>
+      <li>Bilingue espanol + catalan con toggle funcional</li>
+      <li>Diseno 100% responsive (movil, tablet, desktop)</li>
+      <li>Imagen hero generada con IA (<code>gpt-image-1</code>)</li>
+      <li>Animaciones suaves al hacer scroll</li>
+      <li>Repositorio en GitHub: <a class="link" href="https://github.com/xavimollj/myweb" target="_blank">github.com/xavimollj/myweb</a></li>
+      <li>API key de OpenAI guardada en <code>.env</code> (excluida del repo)</li>
+      <li>Toda la informacion del proyecto registrada en memoria</li>
+    </ul>
+  </section>
+
+  <!-- 6. PENDIENTE -->
+  <section>
+    <span class="label label-coral">06 &middot; Pendiente</span>
+    <h2>Proximos pasos</h2>
+    <ul class="check-list pending">
+      <li>Generar 3 imagenes restantes (una por cada herramienta)</li>
+      <li>Sustituir <code>34XXXXXXXXX</code> por tu numero real de WhatsApp</li>
+      <li>Anadir foto real de Xavi en la seccion "Sobre mi"</li>
+      <li>Desplegar en Vercel desde <a class="link" href="https://vercel.com/new" target="_blank">vercel.com/new</a> importando el repo</li>
+      <li>Conectar dominio propio cuando este listo</li>
+      <li>Desarrollar las 3 herramientas SaaS como funcionalidad real</li>
+    </ul>
+  </section>
+
+  <!-- 7. CTA -->
+  <div class="cta-box">
+    <h3>&iquest;Siguiente paso?</h3>
+    <p>Volver a la landing y revisar como se ve todo junto.</p>
+    <a href="index.html" class="btn">Ver la web &rarr;</a>
   </div>
 
-  <div class="card">
-    <h3>Herramienta 03 &middot; Gestion Inteligente de Reservas <span class="badge">teal</span></h3>
-    <p>Recordatorios automaticos al cliente <strong>dias antes, dia anterior y horas antes</strong> de la reserva. Aviso al restaurante en tiempo real. Lista de espera automatica para aprovechar cancelaciones. Reduce drasticamente los no-shows.</p>
-  </div>
-</section>
-
-<section id="web">
-  <h2>4. Estructura de la web</h2>
-  <p>Single-page landing en <code>index.html</code>, bilingue ES/CA con toggle de idioma.</p>
-  <ol>
-    <li><strong>Nav fija</strong> &mdash; logo + links + toggle ES/CA + CTA</li>
-    <li><strong>Hero</strong> &mdash; titular grande con foto de restaurante de fondo + panel con las 3 herramientas</li>
-    <li><strong>Problemas</strong> &mdash; 4 cards con los dolores tipicos del restaurador</li>
-    <li><strong>Herramientas</strong> &mdash; los 3 bloques con imagen IA y bullets</li>
-    <li><strong>Proceso</strong> &mdash; 4 pasos: consulta, auditoria, activacion, seguimiento</li>
-    <li><strong>Sobre mi</strong> &mdash; presentacion de Xavi + stats</li>
-    <li><strong>CTA final</strong> &mdash; WhatsApp + email</li>
-    <li><strong>Footer</strong> &mdash; contacto + redes</li>
-  </ol>
-</section>
-
-<section id="tech">
-  <h2>5. Tecnologia utilizada</h2>
-  <ul>
-    <li><strong>HTML5</strong> + <strong>CSS3</strong> puro (sin frameworks)</li>
-    <li><strong>JavaScript vanilla</strong> para toggle de idioma y scroll reveal</li>
-    <li><strong>Google Fonts</strong> &mdash; Montserrat (CDN)</li>
-    <li><strong>OpenAI API</strong> (<code>gpt-image-1</code>) para generacion de imagenes</li>
-    <li><strong>Git</strong> + <strong>GitHub</strong> como repositorio</li>
-    <li><strong>Vercel</strong> para despliegue automatico</li>
-  </ul>
-  <p><strong>Por que sin frameworks:</strong> el sitio es estatico, no necesita build step, carga rapido y es facil de mantener. Una sola persona puede editarlo abriendo el archivo HTML.</p>
-</section>
-
-<section id="imagenes">
-  <h2>6. Generacion de imagenes con IA</h2>
-  <p>Las 4 imagenes principales fueron generadas con <code>gpt-image-1</code> de OpenAI:</p>
-  <ul>
-    <li><code>img/hero.png</code> &mdash; restaurante oscuro con luz ambar (1536x1024)</li>
-    <li><code>img/tool-menu.png</code> &mdash; chef con plato y movil con overlay IA</li>
-    <li><code>img/tool-reviews.png</code> &mdash; QR + NFC + estrellas en tablet</li>
-    <li><code>img/tool-reservations.png</code> &mdash; tablet con calendario teal</li>
-  </ul>
-
-  <h3>Llamada a la API (ejemplo)</h3>
-  <pre><code>POST https://api.openai.com/v1/images/generations
-Headers: Authorization: Bearer $OPENAI_API_KEY
-Body: {
-  "model": "gpt-image-1",
-  "prompt": "...",
-  "n": 1,
-  "size": "1024x1024",
-  "quality": "high"
-}</code></pre>
-
-  <p><strong>La clave esta en <code>.env</code></strong> y excluida del repositorio (via <code>.gitignore</code>). Nunca llega a GitHub.</p>
-</section>
-
-<section id="deploy">
-  <h2>7. Despliegue</h2>
-  <p>Flujo en dos pasos:</p>
-  <ol class="step-list">
-    <li><strong>GitHub</strong> &mdash; el codigo vive en <a href="https://github.com/xavimollj/myweb" target="_blank">github.com/xavimollj/myweb</a> (rama <code>main</code>). Cada cambio se hace commit y push.</li>
-    <li><strong>Vercel</strong> &mdash; conectado al repo de GitHub. Cada push a <code>main</code> dispara un deploy automatico a produccion. URL publica una vez configurado el dominio.</li>
-  </ol>
-
-  <h3>Para actualizar la web</h3>
-  <pre><code>git add .
-git commit -m "tu mensaje"
-git push origin main
-# Vercel despliega solo</code></pre>
-</section>
-
-<section id="pendiente">
-  <h2>8. Estado y pendiente</h2>
-
-  <h3>Hecho <span class="badge">completado</span></h3>
-  <ul>
-    <li>DAFO + autodiagnostico del consultor</li>
-    <li>Identidad de marca extraida de IG</li>
-    <li>Landing page completa (8 secciones, bilingue ES/CA)</li>
-    <li>4 imagenes IA generadas e integradas</li>
-    <li>Repositorio GitHub inicializado</li>
-    <li>Memoria de proyecto registrada</li>
-    <li>API key segura en <code>.env</code></li>
-  </ul>
-
-  <h3>Pendiente <span class="badge coral">por hacer</span></h3>
-  <ul>
-    <li>Finalizar login en Vercel y deploy a produccion</li>
-    <li>Sustituir <code>34XXXXXXXXX</code> por numero real de WhatsApp</li>
-    <li>Anadir foto real de Xavi en seccion "Sobre mi"</li>
-    <li>Configurar dominio propio</li>
-    <li>Desarrollar las 3 herramientas SaaS como producto real</li>
-    <li>Anadir Google Analytics para medir conversiones</li>
-  </ul>
-</section>
-
-<footer>
-  Gastrodigital Hub &middot; documentacion del proyecto &middot;
-  <a href="index.html">Volver a la web</a>
-</footer>
+  <footer>
+    &copy; 2026 Gastrodigital Hub &middot; Barcelona &middot; <a class="link" href="mailto:xavimollj@gmail.com">xavimollj@gmail.com</a>
+  </footer>
 
 </div>
 </body>
