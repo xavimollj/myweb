@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gastrodigital Hub — Marketing Local para Restaurantes en Barcelona</title>
+  <meta name="description" content="Haz que tu restaurante aparezca en Google Maps. App de menú con IA, gestión de reseñas y reservas inteligentes. Primera consulta gratuita.">
+  <meta name="theme-color" content="#0D0D0D">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0D0D0D;
+      --dark: #141414;
+      --dark-card: #1A1A1A;
+      --dark-border: #2A2A2A;
+      --teal: #3ABDB5;
+      --teal-glow: rgba(58,189,181,0.15);
+      --teal-dark: #2A9A93;
+      --coral: #C93C3C;
+      --coral-glow: rgba(201,60,60,0.12);
+      --navy: #1E3A4A;
+      --cream: #E8DDD5;
+      --white: #FFFFFF;
+      --white-90: rgba(255,255,255,0.92);
+      --white-70: rgba(255,255,255,0.7);
+      --white-50: rgba(255,255,255,0.5);
+      --white-30: rgba(255,255,255,0.3);
+      --white-10: rgba(255,255,255,0.08);
+      --white-05: rgba(255,255,255,0.04);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--black);
+      color: var(--white-90);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ─── LANGUAGE SYSTEM ─── */
+    body.es [data-lang="ca"] { display: none !important; }
+    body.ca [data-lang="es"] { display: none !important; }
+
+    /* ─── NAV ─── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--white-10);
+      padding: 0.8rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo img { height: 36px; border-radius: 6px; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-link {
+      color: var(--white-50); font-size: 0.82rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--teal); }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .lang-toggle {
+      display: flex; background: var(--white-10);
+      border-radius: 8px; padding: 3px; gap: 2px;
+    }
+    .lang-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--white-50); font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem; font-weight: 700;
+      padding: 0.3rem 0.6rem; border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .lang-btn.active { background: var(--teal); color: var(--black); }
+    .btn-nav {
+      background: var(--teal); color: var(--black);
+      font-weight: 700; font-size: 0.82rem;
+      padding: 0.55rem 1.2rem; border-radius: 8px;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .btn-nav:hover { background: var(--teal-dark); }
+
+    /* ─── HAMBURGER MOBILE ─── */
+    .nav-hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      width: 28px; height: 20px; position: relative; z-index: 10;
+    }
+    .nav-hamburger span {
+      display: block; width: 100%; height: 2px; background: var(--white-90);
+      border-radius: 2px; transition: all 0.3s; position: absolute; left: 0;
+    }
+    .nav-hamburger span:nth-child(1) { top: 0; }
+    .nav-hamburger span:nth-child(2) { top: 9px; }
+    .nav-hamburger span:nth-child(3) { top: 18px; }
+
+    /* ─── BUTTONS ─── */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--teal); color: var(--black);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 0.95rem;
+      padding: 0.9rem 1.8rem; border-radius: 10px;
+      border: none; cursor: pointer; transition: all 0.25s;
+      text-transform: uppercase; letter-spacing: 0.03em;
+    }
+    .btn-primary:hover {
+      background: var(--teal-dark); transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(58,189,181,0.3);
+    }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: var(--white-90);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700; font-size: 0.95rem;
+      padding: 0.9rem 1.8rem; border-radius: 10px;
+      border: 1px solid var(--white-30); transition: all 0.25s;
+    }
+    .btn-ghost:hover { background: var(--white-10); border-color: var(--white-50); }
+    .btn-coral {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--coral); color: white;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 0.95rem;
+      padding: 0.9rem 1.8rem; border-radius: 10px;
+      border: none; cursor: pointer; transition: all 0.25s;
+      text-transform: uppercase; letter-spacing: 0.03em;
+    }
+    .btn-coral:hover { background: #b33535; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,60,60,0.3); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh; padding: 7rem 2rem 5rem;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      background: var(--black);
+    }
+    .hero::before {
+      content: ''; position: absolute;
+      top: -40%; right: -20%; width: 70%; height: 140%;
+      background: radial-gradient(ellipse, var(--teal-glow) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute;
+      bottom: -20%; left: -10%; width: 50%; height: 80%;
+      background: radial-gradient(ellipse, var(--coral-glow) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1160px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 400px;
+      gap: 5rem; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--teal-glow); border: 1px solid rgba(58,189,181,0.25);
+      color: var(--teal); font-size: 0.72rem; font-weight: 800;
+      padding: 0.45rem 1rem; border-radius: 99px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.6rem, 5.5vw, 4rem);
+      font-weight: 900; color: var(--white);
+      line-height: 1.05; margin-bottom: 1.5rem;
+      text-transform: uppercase; letter-spacing: -0.02em;
+    }
+    .hero h1 em { color: var(--teal); font-style: normal; }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--white-50);
+      line-height: 1.75; margin-bottom: 2.5rem;
+      font-weight: 500; max-width: 520px;
+    }
+    .hero-ctas { display: flex; gap: 0.85rem; flex-wrap: wrap; }
+
+    .hero-panel {
+      background: var(--dark-card); border: 1px solid var(--dark-border);
+      border-radius: 20px; padding: 0.5rem; position: relative;
+    }
+    .hero-panel::before {
+      content: ''; position: absolute; inset: -1px;
+      border-radius: 21px; padding: 1px;
+      background: linear-gradient(135deg, rgba(58,189,181,0.2) 0%, transparent 50%, rgba(201,60,60,0.15) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      pointer-events: none;
+    }
+    .panel-item {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 1.25rem; border-radius: 14px;
+      transition: background 0.2s;
+    }
+    .panel-item:hover { background: var(--white-05); }
+    .panel-item + .panel-item { border-top: 1px solid var(--white-05); }
+    .p-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; flex-shrink: 0;
+    }
+    .p-icon-teal { background: var(--teal-glow); }
+    .p-icon-coral { background: var(--coral-glow); }
+    .p-icon-cream { background: rgba(232,221,213,0.1); }
+    .p-text strong { display: block; color: var(--white-90); font-size: 0.88rem; font-weight: 700; margin-bottom: 0.15rem; }
+    .p-text span { color: var(--white-30); font-size: 0.78rem; font-weight: 500; }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 6rem 2rem; }
+    .section-inner { max-width: 1160px; margin: 0 auto; }
+    .section-label {
+      display: block; font-size: 0.72rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+    .label-teal { color: var(--teal); }
+    .label-coral { color: var(--coral); }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 900; color: var(--white);
+      line-height: 1.12; margin-bottom: 1rem;
+      text-transform: uppercase; letter-spacing: -0.01em;
+    }
+    .section-sub {
+      font-size: 1rem; color: var(--white-50);
+      line-height: 1.75; max-width: 560px;
+      font-weight: 500;
+    }
+
+    /* ─── PROBLEMS ─── */
+    .problems { background: var(--dark); }
+    .problems-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem; margin-top: 3.5rem;
+    }
+    .prob-card {
+      background: var(--dark-card); border: 1px solid var(--dark-border);
+      border-radius: 16px; padding: 2rem 1.5rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .prob-card:hover { border-color: var(--coral); transform: translateY(-4px); }
+    .prob-emoji { font-size: 2.2rem; margin-bottom: 1.25rem; }
+    .prob-card h3 { font-size: 0.95rem; font-weight: 800; color: var(--white-90); margin-bottom: 0.6rem; text-transform: uppercase; }
+    .prob-card p { font-size: 0.85rem; color: var(--white-50); line-height: 1.65; font-weight: 500; }
+
+    /* ─── TOOLS ─── */
+    .tools { background: var(--black); }
+    .tools-list { display: flex; flex-direction: column; gap: 6rem; margin-top: 1rem; }
+    .tool-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .tool-row.flip .tool-visual { order: -1; }
+
+    .tool-tag {
+      font-size: 0.7rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      margin-bottom: 0.8rem;
+    }
+    .tag-teal { color: var(--teal); }
+    .tag-coral { color: var(--coral); }
+    .tool-title {
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      font-weight: 900; color: var(--white);
+      line-height: 1.15; margin-bottom: 1.1rem;
+      text-transform: uppercase;
+    }
+    .tool-desc {
+      color: var(--white-50); font-size: 0.95rem;
+      line-height: 1.8; margin-bottom: 1.75rem; font-weight: 500;
+    }
+    .tool-list { display: flex; flex-direction: column; gap: 0.7rem; }
+    .tool-list li {
+      display: flex; align-items: flex-start; gap: 0.7rem;
+      font-size: 0.9rem; color: var(--white-70);
+      line-height: 1.55; font-weight: 500;
+    }
+    .check-teal::before { content: '\2713'; color: var(--teal); font-weight: 900; flex-shrink: 0; }
+    .check-coral::before { content: '\2713'; color: var(--coral); font-weight: 900; flex-shrink: 0; }
+
+    .tool-visual {
+      border-radius: 24px; padding: 3.5rem 2rem; min-height: 340px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .tv-teal {
+      background: linear-gradient(150deg, #1a4a5e 0%, #134040 50%, #0d2e3a 100%);
+      border: 1px solid rgba(58,189,181,0.15);
+    }
+    .tv-teal::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 70%, rgba(58,189,181,0.2) 0%, transparent 60%);
+    }
+    .tv-coral {
+      background: linear-gradient(150deg, #3a1a1a 0%, #2e1515 50%, #1a0e0e 100%);
+      border: 1px solid rgba(201,60,60,0.15);
+    }
+    .tv-coral::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 30%, rgba(201,60,60,0.18) 0%, transparent 60%);
+    }
+    .tv-mixed {
+      background: linear-gradient(150deg, #1a3a4a 0%, #2a2020 50%, #1a1a2a 100%);
+      border: 1px solid rgba(58,189,181,0.1);
+    }
+    .tv-mixed::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 80%, rgba(58,189,181,0.12) 0%, transparent 50%),
+                  radial-gradient(ellipse at 50% 20%, rgba(201,60,60,0.1) 0%, transparent 50%);
+    }
+    .tv-emoji { font-size: 5rem; margin-bottom: 1.5rem; position: relative; }
+    .tv-title { color: var(--white-90); font-weight: 800; font-size: 1.05rem; line-height: 1.45; position: relative; }
+    .tv-sub { color: var(--white-30); font-size: 0.8rem; margin-top: 0.5rem; position: relative; font-weight: 600; }
+
+    /* ─── HOW ─── */
+    .how { background: var(--dark); }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem; margin-top: 3.5rem;
+    }
+    .step {
+      text-align: center; padding: 2rem 1.25rem;
+      background: var(--dark-card); border: 1px solid var(--dark-border);
+      border-radius: 16px; transition: border-color 0.3s;
+    }
+    .step:hover { border-color: var(--teal); }
+    .step-num {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--teal); color: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 1.1rem;
+      margin: 0 auto 1.5rem;
+    }
+    .step h3 {
+      font-size: 0.9rem; font-weight: 800; color: var(--white-90);
+      margin-bottom: 0.7rem; text-transform: uppercase;
+    }
+    .step p { font-size: 0.85rem; color: var(--white-50); line-height: 1.65; font-weight: 500; }
+
+    /* ─── ABOUT ─── */
+    .about { background: var(--black); position: relative; overflow: hidden; }
+    .about::before {
+      content: ''; position: absolute;
+      top: 0; left: -10%; width: 50%; height: 100%;
+      background: radial-gradient(ellipse, var(--teal-glow) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .about-inner {
+      display: grid; grid-template-columns: 380px 1fr;
+      gap: 5rem; align-items: center; position: relative; z-index: 1;
+    }
+    .about-photo {
+      background: linear-gradient(135deg, var(--dark-card) 0%, #1a1a1a 100%);
+      border: 1px solid var(--dark-border);
+      border-radius: 24px; aspect-ratio: 3/4;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 6rem; position: relative; overflow: hidden;
+    }
+    .about-photo::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, var(--black) 100%);
+    }
+    .about-text {
+      color: var(--white-50); font-size: 0.95rem;
+      line-height: 1.8; margin-bottom: 1.25rem; font-weight: 500;
+    }
+    .about-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem; margin-top: 2.5rem;
+    }
+    .stat {
+      background: var(--dark-card); border: 1px solid var(--dark-border);
+      border-radius: 14px; padding: 1.5rem 1rem; text-align: center;
+    }
+    .stat-num {
+      font-size: 2rem; font-weight: 900; color: var(--teal);
+      margin-bottom: 0.3rem;
+    }
+    .stat-label { font-size: 0.72rem; color: var(--white-50); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+
+    /* ─── CTA FINAL ─── */
+    .cta-final {
+      background: var(--dark); padding: 7rem 2rem;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-final::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 100%, var(--teal-glow) 0%, transparent 50%),
+                  radial-gradient(ellipse at 50% 0%, var(--coral-glow) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .cta-final > * { position: relative; }
+    .cta-final h2 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 900; color: var(--white);
+      margin-bottom: 1rem; text-transform: uppercase;
+    }
+    .cta-final h2 em { color: var(--teal); font-style: normal; }
+    .cta-final p {
+      color: var(--white-50); font-size: 1.05rem;
+      line-height: 1.7; margin-bottom: 2.5rem;
+      max-width: 480px; margin-left: auto; margin-right: auto;
+      font-weight: 500;
+    }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black); border-top: 1px solid var(--white-10);
+      padding: 2.5rem 2rem; text-align: center;
+    }
+    .footer-inner {
+      max-width: 1160px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-copy { color: var(--white-30); font-size: 0.8rem; font-weight: 500; }
+    .footer-copy a { color: var(--teal); }
+    .footer-social { display: flex; gap: 0.75rem; }
+    .footer-social a {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--white-10); display: flex;
+      align-items: center; justify-content: center;
+      color: var(--white-50); font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .footer-social a:hover { background: var(--teal); color: var(--black); }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-panel { max-width: 420px; }
+      .tool-row, .tool-row.flip { grid-template-columns: 1fr; }
+      .tool-row.flip .tool-visual { order: 0; }
+      .tool-visual { min-height: 240px; }
+      .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .about-photo { max-width: 340px; aspect-ratio: 1; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 768px) {
+      section { padding: 4.5rem 1.5rem; }
+      .nav { padding: 0.8rem 1.25rem; }
+      .problems-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-stats { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+      .hero { padding: 6.5rem 1.5rem 4rem; }
+    }
+    @media (max-width: 500px) {
+      .problems-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .about-stats { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.2rem; }
+      .stat { padding: 1rem; }
+      .btn-primary, .btn-ghost, .btn-coral { width: 100%; justify-content: center; font-size: 0.9rem; padding: 0.85rem 1.5rem; }
+      .hero-ctas { flex-direction: column; }
+      .cta-btns { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+
+<body class="es">
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <a href="#inicio" class="nav-logo"><img src="LOGO1.jpg" alt="Gastrodigital Hub"></a>
+  <div class="nav-links">
+    <a href="#herramientas" class="nav-link">
+      <span data-lang="es">Herramientas</span><span data-lang="ca">Eines</span>
+    </a>
+    <a href="#proceso" class="nav-link">
+      <span data-lang="es">Proceso</span><span data-lang="ca">Proces</span>
+    </a>
+    <a href="#xavi" class="nav-link">
+      <span data-lang="es">Sobre mi</span><span data-lang="ca">Sobre mi</span>
+    </a>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('es')">ES</button>
+      <button class="lang-btn" onclick="setLang('ca')">CA</button>
+    </div>
+    <a href="#contacto" class="btn-nav">
+      <span data-lang="es">Consulta gratis</span><span data-lang="ca">Consulta gratis</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="inicio">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span data-lang="es">Marketing local &middot; Restauracion &middot; Barcelona</span>
+        <span data-lang="ca">Marqueting local &middot; Restauracio &middot; Barcelona</span>
+      </div>
+
+      <h1 data-lang="es">Haz que tu restaurante sea <em>el primero</em> en Google</h1>
+      <h1 data-lang="ca">Fes que el teu restaurant sigui <em>el primer</em> a Google</h1>
+
+      <p class="hero-sub" data-lang="es">Menu actualizado con IA, resenas que se captan solas y reservas que nunca se olvidan. Todo en un panel que activas tu, en minutos.</p>
+      <p class="hero-sub" data-lang="ca">Menu actualitzat amb IA, ressenyes que es capten soles i reserves que mai s'obliden. Tot en un panell que actives tu, en minuts.</p>
+
+      <div class="hero-ctas">
+        <a href="https://wa.me/34XXXXXXXXX" class="btn-primary" target="_blank" rel="noopener">
+          <span data-lang="es">Hablar por WhatsApp</span><span data-lang="ca">Parlar per WhatsApp</span>
+        </a>
+        <a href="#herramientas" class="btn-ghost">
+          <span data-lang="es">Ver las herramientas</span><span data-lang="ca">Veure les eines</span> &darr;
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-panel">
+      <div class="panel-item">
+        <div class="p-icon p-icon-teal">&#x1F4F8;</div>
+        <div class="p-text">
+          <strong><span data-lang="es">App de Menu con IA</span><span data-lang="ca">App de Menu amb IA</span></strong>
+          <span><span data-lang="es">Foto &rarr; deteccion &rarr; web actualizada</span><span data-lang="ca">Foto &rarr; deteccio &rarr; web actualitzada</span></span>
+        </div>
+      </div>
+      <div class="panel-item">
+        <div class="p-icon p-icon-coral">&#x2B50;</div>
+        <div class="p-text">
+          <strong><span data-lang="es">Resenas 360&deg;</span><span data-lang="ca">Ressenyes 360&deg;</span></strong>
+          <span>QR &middot; NFC &middot; CRM &middot; <span data-lang="es">respuestas auto</span><span data-lang="ca">respostes auto</span></span>
+        </div>
+      </div>
+      <div class="panel-item">
+        <div class="p-icon p-icon-cream">&#x1F4C5;</div>
+        <div class="p-text">
+          <strong><span data-lang="es">Gestion de Reservas</span><span data-lang="ca">Gestio de Reserves</span></strong>
+          <span><span data-lang="es">Recordatorios automaticos</span><span data-lang="ca">Recordatoris automatics</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROBLEMS ── -->
+<section class="problems" id="problema">
+  <div class="section-inner">
+    <span class="section-label label-coral" data-lang="es">El problema</span>
+    <span class="section-label label-coral" data-lang="ca">El problema</span>
+
+    <h2 class="section-title" data-lang="es">Esto le pasa a<br>la mayoria de restaurantes</h2>
+    <h2 class="section-title" data-lang="ca">Aixo li passa a<br>la majoria de restaurants</h2>
+
+    <div class="problems-grid">
+      <div class="prob-card reveal">
+        <div class="prob-emoji">&#x1F50D;</div>
+        <h3 data-lang="es">Invisible en Google Maps</h3>
+        <h3 data-lang="ca">Invisible a Google Maps</h3>
+        <p data-lang="es">Cuando alguien busca "donde comer cerca", tu restaurante no aparece. Pierdes clientes cada dia sin saberlo.</p>
+        <p data-lang="ca">Quan algu busca "on menjar a prop", el teu restaurant no apareix. Perds clients cada dia sense saber-ho.</p>
+      </div>
+      <div class="prob-card reveal reveal-d1">
+        <div class="prob-emoji">&#x1F37D;&#xFE0F;</div>
+        <h3 data-lang="es">Menu desactualizado</h3>
+        <h3 data-lang="ca">Menu desactualitzat</h3>
+        <p data-lang="es">Cambias los platos pero la web y Google se quedan atras. El cliente llega esperando algo que ya no sirves.</p>
+        <p data-lang="ca">Canvies els plats pero la web i Google es queden enrere. El client arriba esperant alguna cosa que ja no serveixes.</p>
+      </div>
+      <div class="prob-card reveal reveal-d2">
+        <div class="prob-emoji">&#x2B50;</div>
+        <h3 data-lang="es">Resenas sin gestionar</h3>
+        <h3 data-lang="ca">Ressenyes sense gestionar</h3>
+        <p data-lang="es">Las negativas sin responder, las positivas sin aprovechar. Tu reputacion online se resiente y Google te penaliza.</p>
+        <p data-lang="ca">Les negatives sense resposta, les positives sense aprofitar. La teva reputacio online es ressent i Google et penalitza.</p>
+      </div>
+      <div class="prob-card reveal reveal-d3">
+        <div class="prob-emoji">&#x1F6AB;</div>
+        <h3 data-lang="es">No-shows y mesas vacias</h3>
+        <h3 data-lang="ca">No-shows i taules buides</h3>
+        <p data-lang="es">Clientes que reservan y no aparecen. Sin recordatorios automaticos, pierdes dinero cada semana.</p>
+        <p data-lang="ca">Clients que reserven i no apareixen. Sense recordatoris automatics, perds diners cada setmana.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TOOLS ── -->
+<section class="tools" id="herramientas">
+  <div class="section-inner">
+    <span class="section-label label-teal" data-lang="es">Nuestras herramientas</span>
+    <span class="section-label label-teal" data-lang="ca">Les nostres eines</span>
+
+    <h2 class="section-title" data-lang="es">Tres herramientas<br>que trabajan mientras <em style="color:var(--teal);font-style:normal">tu cocinas</em></h2>
+    <h2 class="section-title" data-lang="ca">Tres eines<br>que treballen mentre <em style="color:var(--teal);font-style:normal">tu cuines</em></h2>
+
+    <p class="section-sub" data-lang="es" style="margin-bottom:4rem">Cada herramienta se activa desde tu panel. Sin tecnicismos, sin depender de nadie.</p>
+    <p class="section-sub" data-lang="ca" style="margin-bottom:4rem">Cada eina s'activa des del teu panell. Sense tecnicismes, sense dependre de ningu.</p>
+
+    <div class="tools-list">
+
+      <!-- TOOL 1: MENU IA -->
+      <div class="tool-row reveal">
+        <div>
+          <div class="tool-tag tag-teal" data-lang="es">HERRAMIENTA 01</div>
+          <div class="tool-tag tag-teal" data-lang="ca">EINA 01</div>
+          <h3 class="tool-title" data-lang="es">App de Menu<br>con IA + Club VIP</h3>
+          <h3 class="tool-title" data-lang="ca">App de Menu<br>amb IA + Club VIP</h3>
+          <p class="tool-desc" data-lang="es">Haz una foto al plato del dia. La IA detecta automaticamente el nombre, redacta una descripcion apetecible y actualiza tu web en segundos. Sin tocar codigo. Sin perder tiempo en sala.</p>
+          <p class="tool-desc" data-lang="ca">Fes una foto al plat del dia. La IA detecta automaticament el nom, redacta una descripcio apetitosa i actualitza la teva web en segons. Sense tocar codi. Sense perdre temps a la sala.</p>
+          <ul class="tool-list">
+            <li class="check-teal" data-lang="es">Deteccion automatica del plato, nombre y descripcion mejorada</li>
+            <li class="check-teal" data-lang="ca">Deteccio automatica del plat, nom i descripcio millorada</li>
+            <li class="check-teal" data-lang="es">Actualizacion instantanea en tu web y ficha de Google</li>
+            <li class="check-teal" data-lang="ca">Actualitzacio instantania a la teva web i fitxa de Google</li>
+            <li class="check-teal" data-lang="es">Club VIP gratuito: tus clientes reciben el menu del dia por WhatsApp, Telegram o email</li>
+            <li class="check-teal" data-lang="ca">Club VIP gratuit: els teus clients reben el menu del dia per WhatsApp, Telegram o email</li>
+            <li class="check-teal" data-lang="es">Fidelizacion automatica para tus clientes habituales</li>
+            <li class="check-teal" data-lang="ca">Fidelitzacio automatica per als teus clients habituals</li>
+          </ul>
+        </div>
+        <div class="tool-visual tv-teal">
+          <div class="tv-emoji">&#x1F4F8;</div>
+          <div class="tv-title" data-lang="es">FOTO &rarr; IA &rarr; WEB<br>EN MENOS DE 30 SEGUNDOS</div>
+          <div class="tv-title" data-lang="ca">FOTO &rarr; IA &rarr; WEB<br>EN MENYS DE 30 SEGONS</div>
+          <div class="tv-sub" data-lang="es">+ CLUB VIP NOTIFICADO AL MOMENTO</div>
+          <div class="tv-sub" data-lang="ca">+ CLUB VIP NOTIFICAT AL MOMENT</div>
+        </div>
+      </div>
+
+      <!-- TOOL 2: RESENAS -->
+      <div class="tool-row flip reveal">
+        <div>
+          <div class="tool-tag tag-coral" data-lang="es">HERRAMIENTA 02</div>
+          <div class="tool-tag tag-coral" data-lang="ca">EINA 02</div>
+          <h3 class="tool-title" data-lang="es">Sistema de<br>Resenas 360&deg;</h3>
+          <h3 class="tool-title" data-lang="ca">Sistema de<br>Ressenyes 360&deg;</h3>
+          <p class="tool-desc" data-lang="es">No solo respondemos resenas: montamos un sistema completo de captacion etica. Las resenas llegan solas, se gestionan solas y trabajan a tu favor 24/7.</p>
+          <p class="tool-desc" data-lang="ca">No nomes responem ressenyes: muntem un sistema complet de captacio etica. Les ressenyes arriben soles, es gestionen soles i treballen al teu favor 24/7.</p>
+          <ul class="tool-list">
+            <li class="check-coral" data-lang="es">QR en mesa y tarjetas NFC para pedir resena en el momento justo</li>
+            <li class="check-coral" data-lang="ca">QR a taula i targetes NFC per demanar ressenya en el moment just</li>
+            <li class="check-coral" data-lang="es">CRM interno para seguimiento personalizado de cada cliente</li>
+            <li class="check-coral" data-lang="ca">CRM intern per al seguiment personalitzat de cada client</li>
+            <li class="check-coral" data-lang="es">Respuestas automaticas con tu tono, adaptadas a cada comentario</li>
+            <li class="check-coral" data-lang="ca">Respostes automatiques amb el teu to, adaptades a cada comentari</li>
+            <li class="check-coral" data-lang="es">100% etico y dentro de las politicas de Google</li>
+            <li class="check-coral" data-lang="ca">100% etic i dins les politiques de Google</li>
+          </ul>
+        </div>
+        <div class="tool-visual tv-coral">
+          <div class="tv-emoji">&#x2B50;</div>
+          <div class="tv-title" data-lang="es">RESENAS QUE LLEGAN,<br>SE RESPONDEN Y CONVIERTEN</div>
+          <div class="tv-title" data-lang="ca">RESSENYES QUE ARRIBEN,<br>ES RESPONEN I CONVERTEIXEN</div>
+          <div class="tv-sub">QR &middot; NFC &middot; CRM &middot; AUTO-RESPUESTAS</div>
+        </div>
+      </div>
+
+      <!-- TOOL 3: RESERVAS -->
+      <div class="tool-row reveal">
+        <div>
+          <div class="tool-tag tag-teal" data-lang="es">HERRAMIENTA 03</div>
+          <div class="tool-tag tag-teal" data-lang="ca">EINA 03</div>
+          <h3 class="tool-title" data-lang="es">Gestion inteligente<br>de reservas</h3>
+          <h3 class="tool-title" data-lang="ca">Gestio intel&middot;ligent<br>de reserves</h3>
+          <p class="tool-desc" data-lang="es">El sistema avisa automaticamente a tus clientes antes de la reserva. Y a ti tambien. Menos no-shows, mesas siempre llenas, y tu sin hacer nada extra.</p>
+          <p class="tool-desc" data-lang="ca">El sistema avisa automaticament els teus clients abans de la reserva. I a tu tambe. Menys no-shows, taules sempre plenes, i tu sense fer res addicional.</p>
+          <ul class="tool-list">
+            <li class="check-teal" data-lang="es">Recordatorio al cliente: dias antes, dia anterior y horas antes</li>
+            <li class="check-teal" data-lang="ca">Recordatori al client: dies abans, dia anterior i hores abans</li>
+            <li class="check-teal" data-lang="es">Aviso al restaurante de cada confirmacion o cancelacion en tiempo real</li>
+            <li class="check-teal" data-lang="ca">Avis al restaurant de cada confirmacio o cancel&middot;lacio en temps real</li>
+            <li class="check-teal" data-lang="es">Reduccion drastica de no-shows y mesas perdidas</li>
+            <li class="check-teal" data-lang="ca">Reduccio drastica de no-shows i taules perdudes</li>
+            <li class="check-teal" data-lang="es">Lista de espera automatica para aprovechar cancelaciones</li>
+            <li class="check-teal" data-lang="ca">Llista d'espera automatica per aprofitar cancel&middot;lacions</li>
+          </ul>
+        </div>
+        <div class="tool-visual tv-mixed">
+          <div class="tv-emoji">&#x1F4C5;</div>
+          <div class="tv-title" data-lang="es">RESERVAS CONFIRMADAS,<br>MESAS SIEMPRE LLENAS</div>
+          <div class="tv-title" data-lang="ca">RESERVES CONFIRMADES,<br>TAULES SEMPRE PLENES</div>
+          <div class="tv-sub" data-lang="es">RECORDATORIOS EN CADA PASO</div>
+          <div class="tv-sub" data-lang="ca">RECORDATORIS EN CADA PAS</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW ── -->
+<section class="how" id="proceso">
+  <div class="section-inner">
+    <span class="section-label label-teal" data-lang="es">Proceso</span>
+    <span class="section-label label-teal" data-lang="ca">Proces</span>
+
+    <h2 class="section-title" data-lang="es">Empezar es mas facil<br>de lo que crees</h2>
+    <h2 class="section-title" data-lang="ca">Comencar es mes facil<br>del que creus</h2>
+
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <h3 data-lang="es">Consulta gratuita</h3>
+        <h3 data-lang="ca">Consulta gratuita</h3>
+        <p data-lang="es">30 minutos para entender tu situacion y ver que herramientas te convienen.</p>
+        <p data-lang="ca">30 minuts per entendre la teva situacio i veure quines eines t'interessen.</p>
+      </div>
+      <div class="step reveal reveal-d1">
+        <div class="step-num">2</div>
+        <h3 data-lang="es">Auditoria</h3>
+        <h3 data-lang="ca">Auditoria</h3>
+        <p data-lang="es">Analizamos tu ficha de Google, web y resenas. Detectamos que falta y que priorizar.</p>
+        <p data-lang="ca">Analitzem la teva fitxa de Google, web i ressenyes. Detectem que falta i que prioritzar.</p>
+      </div>
+      <div class="step reveal reveal-d2">
+        <div class="step-num">3</div>
+        <h3 data-lang="es">Activacion</h3>
+        <h3 data-lang="ca">Activacio</h3>
+        <p data-lang="es">Activamos las herramientas desde tu panel en minutos. Sin tecnicismos, sin complicaciones.</p>
+        <p data-lang="ca">Activem les eines des del teu panell en minuts. Sense tecnicismes, sense complicacions.</p>
+      </div>
+      <div class="step reveal reveal-d3">
+        <div class="step-num">4</div>
+        <h3 data-lang="es">Seguimiento</h3>
+        <h3 data-lang="ca">Seguiment</h3>
+        <p data-lang="es">Revisamos resultados cada mes, ajustamos estrategia y te informamos de todo.</p>
+        <p data-lang="ca">Revisem resultats cada mes, ajustem estrategia i t'informem de tot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section class="about" id="xavi">
+  <div class="section-inner">
+    <div class="about-inner">
+      <div class="about-photo">&#x1F468;&#x200D;&#x1F373;</div>
+      <div>
+        <span class="section-label label-teal" data-lang="es">Quien soy</span>
+        <span class="section-label label-teal" data-lang="ca">Qui soc</span>
+
+        <h2 class="section-title" data-lang="es">Soy Xavi, especialista en marketing local para restauracion</h2>
+        <h2 class="section-title" data-lang="ca">Soc Xavi, especialista en marqueting local per a restauracio</h2>
+
+        <p class="about-text" data-lang="es">Con mas de 5 anos en marketing digital y experiencia previa gestionando campanas publicitarias para grandes marcas en medios, hoy trabajo exclusivamente con restaurantes y bares que quieren crecer sin perderse en la tecnologia.</p>
+        <p class="about-text" data-lang="ca">Amb mes de 5 anys en marqueting digital i experiencia previa gestionant campanyes publicitaries per a grans marques en mitjans, avui treballo exclusivament amb restaurants i bars que volen creixer sense perdre's en la tecnologia.</p>
+
+        <p class="about-text" data-lang="es">Conozco el sector de restauracion de Barcelona y se que el dueno de un restaurante no tiene tiempo para tecnicismos. Todo lo que hago esta pensado para que tu lo entiendas, lo controles y lo uses sin depender de nadie.</p>
+        <p class="about-text" data-lang="ca">Conec el sector de restauracio de Barcelona i se que el propietari d'un restaurant no te temps per a tecnicismes. Tot el que faig esta pensat perque tu ho entenguis, ho controlis i ho facis servir sense dependre de ningu.</p>
+
+        <div class="about-stats">
+          <div class="stat">
+            <div class="stat-num">5+</div>
+            <div class="stat-label" data-lang="es">Anos en marketing</div>
+            <div class="stat-label" data-lang="ca">Anys en marqueting</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" style="font-size:1.4rem">100%</div>
+            <div class="stat-label" data-lang="es">Restauracion</div>
+            <div class="stat-label" data-lang="ca">Restauracio</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">BCN</div>
+            <div class="stat-label" data-lang="es">Especialista local</div>
+            <div class="stat-label" data-lang="ca">Especialista local</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ── -->
+<section class="cta-final" id="contacto">
+  <h2 data-lang="es">Listo para llenar<br><em>mas mesas</em>?</h2>
+  <h2 data-lang="ca">Preparat per omplir<br><em>mes taules</em>?</h2>
+
+  <p data-lang="es">Primera consulta gratuita, sin compromiso.<br>Te cuento exactamente que necesita tu restaurante.</p>
+  <p data-lang="ca">Primera consulta gratuita, sense compromis.<br>Et dic exactament que necessita el teu restaurant.</p>
+
+  <div class="cta-btns">
+    <a href="https://wa.me/34XXXXXXXXX" class="btn-primary" target="_blank" rel="noopener">
+      <span data-lang="es">Escribeme por WhatsApp</span><span data-lang="ca">Escriu-me per WhatsApp</span>
+    </a>
+    <a href="mailto:xavimollj@gmail.com" class="btn-ghost">
+      <span data-lang="es">Enviar email</span><span data-lang="ca">Enviar email</span>
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-copy">
+      &copy; 2026 Gastrodigital Hub &nbsp;&middot;&nbsp;
+      <a href="mailto:xavimollj@gmail.com">xavimollj@gmail.com</a> &nbsp;&middot;&nbsp;
+      Barcelona
+    </div>
+    <div class="footer-social">
+      <a href="https://instagram.com/gastrodigital.hub" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.body.className = lang;
+    document.documentElement.lang = lang === 'ca' ? 'ca' : 'es';
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+      btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+    });
+  }
+
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+</script>
+
+</body>
+</html>
