@@ -139,7 +139,12 @@
       min-height: 100vh; padding: 7rem 2rem 5rem;
       display: flex; align-items: center;
       position: relative; overflow: hidden;
-      background: var(--black);
+      background: url('img/hero.png') center/cover no-repeat var(--black);
+    }
+    .hero .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(13,13,13,0.92) 0%, rgba(13,13,13,0.75) 50%, rgba(13,13,13,0.4) 100%);
+      z-index: 0;
     }
     .hero::before {
       content: ''; position: absolute;
@@ -290,6 +295,14 @@
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center; position: relative; overflow: hidden;
+      background-size: cover; background-position: center;
+    }
+    .tool-visual img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; border-radius: 24px;
+    }
+    .tool-visual .tv-overlay {
+      position: absolute; inset: 0; border-radius: 24px;
     }
     .tv-teal {
       background: linear-gradient(150deg, #1a4a5e 0%, #134040 50%, #0d2e3a 100%);
@@ -505,6 +518,7 @@
 
 <!-- ── HERO ── -->
 <section class="hero" id="inicio">
+  <div class="hero-overlay"></div>
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-badge">
@@ -631,7 +645,8 @@
           </ul>
         </div>
         <div class="tool-visual tv-teal">
-          <div class="tv-emoji">&#x1F4F8;</div>
+          <img src="img/tool-menu.png" alt="App de menu con IA" loading="lazy">
+          <div class="tv-overlay" style="background:linear-gradient(to top, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0.3) 50%, transparent 100%)"></div>
           <div class="tv-title" data-lang="es">FOTO &rarr; IA &rarr; WEB<br>EN MENOS DE 30 SEGUNDOS</div>
           <div class="tv-title" data-lang="ca">FOTO &rarr; IA &rarr; WEB<br>EN MENYS DE 30 SEGONS</div>
           <div class="tv-sub" data-lang="es">+ CLUB VIP NOTIFICADO AL MOMENTO</div>
@@ -660,7 +675,8 @@
           </ul>
         </div>
         <div class="tool-visual tv-coral">
-          <div class="tv-emoji">&#x2B50;</div>
+          <img src="img/tool-reviews.png" alt="Sistema de resenas 360" loading="lazy">
+          <div class="tv-overlay" style="background:linear-gradient(to top, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0.3) 50%, transparent 100%)"></div>
           <div class="tv-title" data-lang="es">RESENAS QUE LLEGAN,<br>SE RESPONDEN Y CONVIERTEN</div>
           <div class="tv-title" data-lang="ca">RESSENYES QUE ARRIBEN,<br>ES RESPONEN I CONVERTEIXEN</div>
           <div class="tv-sub">QR &middot; NFC &middot; CRM &middot; AUTO-RESPUESTAS</div>
@@ -688,7 +704,8 @@
           </ul>
         </div>
         <div class="tool-visual tv-mixed">
-          <div class="tv-emoji">&#x1F4C5;</div>
+          <img src="img/tool-reservations.png" alt="Gestion inteligente de reservas" loading="lazy">
+          <div class="tv-overlay" style="background:linear-gradient(to top, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0.3) 50%, transparent 100%)"></div>
           <div class="tv-title" data-lang="es">RESERVAS CONFIRMADAS,<br>MESAS SIEMPRE LLENAS</div>
           <div class="tv-title" data-lang="ca">RESERVES CONFIRMADES,<br>TAULES SEMPRE PLENES</div>
           <div class="tv-sub" data-lang="es">RECORDATORIOS EN CADA PASO</div>
