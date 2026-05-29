@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gastrodigital Hub — Marketing Local para Restaurantes en Barcelona</title>
-  <meta name="description" content="Haz que tu restaurante aparezca en Google Maps. App de menú con IA, gestión de reseñas y reservas inteligentes. Primera consulta gratuita.">
+  <title>Xavi Moll | GastroDigital Hub — Marketing local para restaurantes en Barcelona</title>
+  <meta name="description" content="Consultor de marketing local para restaurantes. Ayudo a negocios gastronómicos a aparecer en Google Maps, atraer clientes locales y convertir su presencia digital en reservas reales. Solicita tu diagnóstico.">
   <meta name="theme-color" content="#0D0D0D">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,7 +58,12 @@
       padding: 0.8rem 2rem;
       display: flex; align-items: center; justify-content: space-between;
     }
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; }
     .nav-logo img { height: 36px; border-radius: 6px; }
+    .nav-brand { display: flex; flex-direction: column; line-height: 1; }
+    .nav-brand strong { font-size: 0.85rem; font-weight: 800; color: var(--white-90); letter-spacing: 0.01em; }
+    .nav-brand em { font-size: 0.65rem; font-weight: 600; color: var(--teal); font-style: normal; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 2px; }
+    @media (max-width: 540px) { .nav-brand { display: none; } }
     .nav-links { display: flex; align-items: center; gap: 2rem; }
     .nav-link {
       color: var(--white-50); font-size: 0.82rem; font-weight: 600;
@@ -255,6 +260,43 @@
     .prob-card h3 { font-size: 0.95rem; font-weight: 800; color: var(--white-90); margin-bottom: 0.6rem; text-transform: uppercase; }
     .prob-card p { font-size: 0.85rem; color: var(--white-50); line-height: 1.65; font-weight: 500; }
 
+    /* ─── SERVICIOS ─── */
+    .services { background: var(--black); position: relative; }
+    .services::before {
+      content: ''; position: absolute;
+      top: 20%; right: -10%; width: 40%; height: 60%;
+      background: radial-gradient(ellipse, var(--teal-glow) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem; position: relative;
+    }
+    .svc-card {
+      background: var(--dark-card); border: 1px solid var(--dark-border);
+      border-radius: 16px; padding: 2rem 1.6rem;
+      transition: border-color 0.3s, transform 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .svc-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--teal), transparent);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s;
+    }
+    .svc-card:hover { border-color: var(--teal); transform: translateY(-4px); }
+    .svc-card:hover::before { transform: scaleX(1); }
+    .svc-num {
+      font-size: 1.4rem; font-weight: 900; color: var(--teal);
+      margin-bottom: 1rem; letter-spacing: 0.04em;
+    }
+    .svc-card h3 {
+      font-size: 1rem; font-weight: 800; color: var(--white-90);
+      margin-bottom: 0.75rem; text-transform: uppercase;
+      letter-spacing: -0.01em; line-height: 1.25;
+    }
+    .svc-card p { font-size: 0.86rem; color: var(--white-50); line-height: 1.65; font-weight: 500; }
+
     /* ─── TOOLS ─── */
     .tools { background: var(--black); }
     .tools-list { display: flex; flex-direction: column; gap: 6rem; margin-top: 1rem; }
@@ -357,6 +399,38 @@
       margin-bottom: 0.7rem; text-transform: uppercase;
     }
     .step p { font-size: 0.85rem; color: var(--white-50); line-height: 1.65; font-weight: 500; }
+
+    /* ─── CASES ─── */
+    .cases { background: var(--dark); position: relative; }
+    .cases::before {
+      content: ''; position: absolute;
+      bottom: 0; left: -10%; width: 50%; height: 70%;
+      background: radial-gradient(ellipse, var(--coral-glow) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cases-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem; position: relative;
+    }
+    .case-card {
+      background: var(--dark-card); border: 1px solid var(--dark-border);
+      border-radius: 16px; padding: 2rem 1.75rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .case-card:hover { border-color: var(--coral); transform: translateY(-4px); }
+    .case-tag {
+      display: inline-block; font-size: 0.68rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--coral); background: rgba(201,60,60,0.10);
+      padding: 0.35rem 0.7rem; border-radius: 99px;
+      margin-bottom: 1rem;
+    }
+    .case-card h3 {
+      font-size: 1.05rem; font-weight: 800; color: var(--white-90);
+      margin-bottom: 0.75rem; line-height: 1.3; text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+    .case-card p { font-size: 0.88rem; color: var(--white-50); line-height: 1.7; font-weight: 500; }
 
     /* ─── ABOUT ─── */
     .about { background: var(--black); position: relative; overflow: hidden; }
@@ -468,6 +542,10 @@
       .about-photo { max-width: 340px; aspect-ratio: 1; }
       .nav-links { display: none; }
     }
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .cases-grid { grid-template-columns: 1fr; }
+    }
     @media (max-width: 768px) {
       section { padding: 4.5rem 1.5rem; }
       .nav { padding: 0.8rem 1.25rem; }
@@ -479,6 +557,7 @@
     @media (max-width: 500px) {
       .problems-grid { grid-template-columns: 1fr; }
       .steps-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
       .about-stats { grid-template-columns: 1fr; }
       .hero h1 { font-size: 2.2rem; }
       .stat { padding: 1rem; }
@@ -493,13 +572,19 @@
 
 <!-- ── NAV ── -->
 <nav class="nav">
-  <a href="#inicio" class="nav-logo"><img src="LOGO1.jpg" alt="Gastrodigital Hub"></a>
+  <a href="#inicio" class="nav-logo">
+    <img src="LOGO1.jpg" alt="Xavi Moll | GastroDigital Hub">
+    <span class="nav-brand"><strong>Xavi Moll</strong><em>GastroDigital Hub</em></span>
+  </a>
   <div class="nav-links">
-    <a href="#herramientas" class="nav-link">
-      <span data-lang="es">Herramientas</span><span data-lang="ca">Eines</span>
+    <a href="#servicios" class="nav-link">
+      <span data-lang="es">Servicios</span><span data-lang="ca">Serveis</span>
     </a>
-    <a href="#proceso" class="nav-link">
-      <span data-lang="es">Proceso</span><span data-lang="ca">Proces</span>
+    <a href="#kit" class="nav-link">
+      <span data-lang="es">Kit exclusivo</span><span data-lang="ca">Kit exclusiu</span>
+    </a>
+    <a href="#metodo" class="nav-link">
+      <span data-lang="es">Metodo</span><span data-lang="ca">Metode</span>
     </a>
     <a href="#xavi" class="nav-link">
       <span data-lang="es">Sobre mi</span><span data-lang="ca">Sobre mi</span>
@@ -511,7 +596,7 @@
       <button class="lang-btn" onclick="setLang('ca')">CA</button>
     </div>
     <a href="#contacto" class="btn-nav">
-      <span data-lang="es">Consulta gratis</span><span data-lang="ca">Consulta gratis</span>
+      <span data-lang="es">Solicitar diagnostico</span><span data-lang="ca">Demanar diagnostic</span>
     </a>
   </div>
 </nav>
@@ -522,22 +607,22 @@
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-badge">
-        <span data-lang="es">Marketing local &middot; Restauracion &middot; Barcelona</span>
-        <span data-lang="ca">Marqueting local &middot; Restauracio &middot; Barcelona</span>
+        <span data-lang="es">Consultor de marketing local &middot; Restauracion &middot; Barcelona</span>
+        <span data-lang="ca">Consultor de marqueting local &middot; Restauracio &middot; Barcelona</span>
       </div>
 
-      <h1 data-lang="es">Haz que tu restaurante sea <em>el primero</em> en Google</h1>
-      <h1 data-lang="ca">Fes que el teu restaurant sigui <em>el primer</em> a Google</h1>
+      <h1 data-lang="es">Marketing local para restaurantes que quieren mas <em>visibilidad, reservas</em> y rentabilidad</h1>
+      <h1 data-lang="ca">Marqueting local per a restaurants que volen mes <em>visibilitat, reserves</em> i rendibilitat</h1>
 
-      <p class="hero-sub" data-lang="es">Menu actualizado con IA, resenas que se captan solas y reservas que nunca se olvidan. Todo en un panel que activas tu, en minutos.</p>
-      <p class="hero-sub" data-lang="ca">Menu actualitzat amb IA, ressenyes que es capten soles i reserves que mai s'obliden. Tot en un panell que actives tu, en minuts.</p>
+      <p class="hero-sub" data-lang="es">Ayudo a restaurantes, chefs y negocios gastronomicos a aparecer mejor en Google, atraer clientes locales y convertir su presencia digital en visitas y reservas reales.</p>
+      <p class="hero-sub" data-lang="ca">Ajudo restaurants, xefs i negocis gastronomics a aparèixer millor a Google, atraure clients locals i convertir la seva presencia digital en visites i reserves reals.</p>
 
       <div class="hero-ctas">
-        <a href="https://wa.me/34XXXXXXXXX" class="btn-primary" target="_blank" rel="noopener">
-          <span data-lang="es">Hablar por WhatsApp</span><span data-lang="ca">Parlar per WhatsApp</span>
+        <a href="#contacto" class="btn-primary">
+          <span data-lang="es">Solicitar diagnostico</span><span data-lang="ca">Demanar diagnostic</span>
         </a>
-        <a href="#herramientas" class="btn-ghost">
-          <span data-lang="es">Ver las herramientas</span><span data-lang="ca">Veure les eines</span> &darr;
+        <a href="#servicios" class="btn-ghost">
+          <span data-lang="es">Ver servicios</span><span data-lang="ca">Veure serveis</span> &darr;
         </a>
       </div>
     </div>
@@ -574,53 +659,115 @@
     <span class="section-label label-coral" data-lang="es">El problema</span>
     <span class="section-label label-coral" data-lang="ca">El problema</span>
 
-    <h2 class="section-title" data-lang="es">Esto le pasa a<br>la mayoria de restaurantes</h2>
-    <h2 class="section-title" data-lang="ca">Aixo li passa a<br>la majoria de restaurants</h2>
+    <h2 class="section-title" data-lang="es">Tu restaurante puede tener buen producto<br>y seguir <em style="color:var(--coral);font-style:normal">perdiendo clientes online</em></h2>
+    <h2 class="section-title" data-lang="ca">El teu restaurant pot tenir bon producte<br>i seguir <em style="color:var(--coral);font-style:normal">perdent clients online</em></h2>
+
+    <p class="section-sub" data-lang="es" style="margin-bottom:3rem">Estos son los problemas mas comunes que veo cada semana en restaurantes de Barcelona:</p>
+    <p class="section-sub" data-lang="ca" style="margin-bottom:3rem">Aquests son els problemes mes comuns que veig cada setmana en restaurants de Barcelona:</p>
 
     <div class="problems-grid">
       <div class="prob-card reveal">
         <div class="prob-emoji">&#x1F50D;</div>
-        <h3 data-lang="es">Invisible en Google Maps</h3>
-        <h3 data-lang="ca">Invisible a Google Maps</h3>
-        <p data-lang="es">Cuando alguien busca "donde comer cerca", tu restaurante no aparece. Pierdes clientes cada dia sin saberlo.</p>
-        <p data-lang="ca">Quan algu busca "on menjar a prop", el teu restaurant no apareix. Perds clients cada dia sense saber-ho.</p>
+        <h3 data-lang="es">Sin visibilidad local</h3>
+        <h3 data-lang="ca">Sense visibilitat local</h3>
+        <p data-lang="es">Tienes buen producto pero no apareces cuando alguien busca "donde comer cerca" o "restaurante en Barcelona". Esa reserva se la lleva otro.</p>
+        <p data-lang="ca">Tens bon producte pero no apareixes quan algu busca "on menjar a prop" o "restaurant a Barcelona". Aquesta reserva se l'enduu un altre.</p>
       </div>
       <div class="prob-card reveal reveal-d1">
-        <div class="prob-emoji">&#x1F37D;&#xFE0F;</div>
-        <h3 data-lang="es">Menu desactualizado</h3>
-        <h3 data-lang="ca">Menu desactualitzat</h3>
-        <p data-lang="es">Cambias los platos pero la web y Google se quedan atras. El cliente llega esperando algo que ya no sirves.</p>
-        <p data-lang="ca">Canvies els plats pero la web i Google es queden enrere. El client arriba esperant alguna cosa que ja no serveixes.</p>
+        <div class="prob-emoji">&#x1F4F1;</div>
+        <h3 data-lang="es">Publicar sin estrategia</h3>
+        <h3 data-lang="ca">Publicar sense estrategia</h3>
+        <p data-lang="es">Subes contenido a Instagram cada semana pero no sabes si trae clientes. Publicar mas no es publicar mejor.</p>
+        <p data-lang="ca">Puges contingut a Instagram cada setmana pero no saps si porta clients. Publicar mes no es publicar millor.</p>
       </div>
       <div class="prob-card reveal reveal-d2">
-        <div class="prob-emoji">&#x2B50;</div>
-        <h3 data-lang="es">Resenas sin gestionar</h3>
-        <h3 data-lang="ca">Ressenyes sense gestionar</h3>
-        <p data-lang="es">Las negativas sin responder, las positivas sin aprovechar. Tu reputacion online se resiente y Google te penaliza.</p>
-        <p data-lang="ca">Les negatives sense resposta, les positives sense aprofitar. La teva reputacio online es ressent i Google et penalitza.</p>
+        <div class="prob-emoji">&#x1F4B8;</div>
+        <h3 data-lang="es">Publicidad mal enfocada</h3>
+        <h3 data-lang="ca">Publicitat mal enfocada</h3>
+        <p data-lang="es">Inviertes en Google Ads o Meta Ads sin saber si genera reservas. Clics que no se traducen en mesas ocupadas.</p>
+        <p data-lang="ca">Inverteixes en Google Ads o Meta Ads sense saber si genera reserves. Clics que no es tradueixen en taules ocupades.</p>
       </div>
       <div class="prob-card reveal reveal-d3">
-        <div class="prob-emoji">&#x1F6AB;</div>
-        <h3 data-lang="es">No-shows y mesas vacias</h3>
-        <h3 data-lang="ca">No-shows i taules buides</h3>
-        <p data-lang="es">Clientes que reservan y no aparecen. Sin recordatorios automaticos, pierdes dinero cada semana.</p>
-        <p data-lang="ca">Clients que reserven i no apareixen. Sense recordatoris automatics, perds diners cada setmana.</p>
+        <div class="prob-emoji">&#x1F4CA;</div>
+        <h3 data-lang="es">Decisiones sin datos</h3>
+        <h3 data-lang="ca">Decisions sense dades</h3>
+        <p data-lang="es">No sabes de donde vienen tus reservas, que canal funciona ni que campana aporta valor. En restauracion, las sensaciones salen caras.</p>
+        <p data-lang="ca">No saps d'on venen les teves reserves, quin canal funciona ni quina campanya aporta valor. En restauracio, les sensacions surten cares.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── TOOLS ── -->
-<section class="tools" id="herramientas">
+<!-- ── SERVICIOS ── -->
+<section class="services" id="servicios">
   <div class="section-inner">
-    <span class="section-label label-teal" data-lang="es">Nuestras herramientas</span>
-    <span class="section-label label-teal" data-lang="ca">Les nostres eines</span>
+    <span class="section-label label-teal" data-lang="es">Mis servicios</span>
+    <span class="section-label label-teal" data-lang="ca">Els meus serveis</span>
 
-    <h2 class="section-title" data-lang="es">Tres herramientas<br>que trabajan mientras <em style="color:var(--teal);font-style:normal">tu cocinas</em></h2>
-    <h2 class="section-title" data-lang="ca">Tres eines<br>que treballen mentre <em style="color:var(--teal);font-style:normal">tu cuines</em></h2>
+    <h2 class="section-title" data-lang="es">Marketing digital para restaurantes,<br><em style="color:var(--teal);font-style:normal">bajado a la realidad del negocio</em></h2>
+    <h2 class="section-title" data-lang="ca">Marqueting digital per a restaurants,<br><em style="color:var(--teal);font-style:normal">baixat a la realitat del negoci</em></h2>
 
-    <p class="section-sub" data-lang="es" style="margin-bottom:4rem">Cada herramienta se activa desde tu panel. Sin tecnicismos, sin depender de nadie.</p>
-    <p class="section-sub" data-lang="ca" style="margin-bottom:4rem">Cada eina s'activa des del teu panell. Sense tecnicismes, sense dependre de ningu.</p>
+    <p class="section-sub" data-lang="es" style="margin-bottom:3.5rem">SEO local, Google Business Profile, publicidad online, contenido y medicion. Cada servicio tiene un proposito claro: atraer, convencer o convertir.</p>
+    <p class="section-sub" data-lang="ca" style="margin-bottom:3.5rem">SEO local, Google Business Profile, publicitat online, contingut i medicio. Cada servei te un proposit clar: atraure, convencer o convertir.</p>
+
+    <div class="services-grid">
+      <div class="svc-card reveal">
+        <div class="svc-num">01</div>
+        <h3 data-lang="es">Consultoria de marketing local</h3>
+        <h3 data-lang="ca">Consultoria de marqueting local</h3>
+        <p data-lang="es">Diagnostico completo de tu situacion digital actual y plan de accion priorizado. La puerta de entrada para empezar con criterio.</p>
+        <p data-lang="ca">Diagnostic complet de la teva situacio digital actual i pla d'accio prioritzat. La porta d'entrada per comencar amb criteri.</p>
+      </div>
+      <div class="svc-card reveal reveal-d1">
+        <div class="svc-num">02</div>
+        <h3 data-lang="es">SEO local y Google Business Profile</h3>
+        <h3 data-lang="ca">SEO local i Google Business Profile</h3>
+        <p data-lang="es">Mi territorio mas fuerte. Optimizacion de tu ficha de Google, categorias, fotos, resenas y senales locales para aparecer en Maps y en "cerca de mi".</p>
+        <p data-lang="ca">El meu territori mes fort. Optimitzacio de la teva fitxa de Google, categories, fotos, ressenyes i senyals locals per apareixer a Maps i a "a prop meu".</p>
+      </div>
+      <div class="svc-card reveal reveal-d2">
+        <div class="svc-num">03</div>
+        <h3 data-lang="es">Publicidad online</h3>
+        <h3 data-lang="ca">Publicitat online</h3>
+        <p data-lang="es">Google Ads, Meta Ads y TikTok Ads pensados para atraer clientes reales, no solo clics. Campanas para menu, eventos, temporadas o delivery.</p>
+        <p data-lang="ca">Google Ads, Meta Ads i TikTok Ads pensats per atraure clients reals, no nomes clics. Campanyes per a menu, esdeveniments, temporades o delivery.</p>
+      </div>
+      <div class="svc-card reveal reveal-d3">
+        <div class="svc-num">04</div>
+        <h3 data-lang="es">Estrategia de contenidos</h3>
+        <h3 data-lang="ca">Estrategia de continguts</h3>
+        <p data-lang="es">Pilares, calendario editorial, ideas de reels y copies. Contenido pensado para captar clientes, no solo para "alimentar" Instagram.</p>
+        <p data-lang="ca">Pilars, calendari editorial, idees de reels i copies. Contingut pensat per captar clients, no nomes per "alimentar" Instagram.</p>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-num">05</div>
+        <h3 data-lang="es">Medicion y analitica</h3>
+        <h3 data-lang="ca">Medicio i analitica</h3>
+        <p data-lang="es">Configuracion de GA4, Search Console, conversiones, eventos y reservas. Para saber que canal trae clientes y donde invertir mejor.</p>
+        <p data-lang="ca">Configuracio de GA4, Search Console, conversions, esdeveniments i reserves. Per saber quin canal porta clients i on invertir millor.</p>
+      </div>
+      <div class="svc-card reveal reveal-d1">
+        <div class="svc-num">06</div>
+        <h3 data-lang="es">Gestion mensual</h3>
+        <h3 data-lang="ca">Gestio mensual</h3>
+        <p data-lang="es">Acompanamiento estrategico recurrente: optimizacion continua, campanas, contenido, informe mensual y reunion de revision. Sin "packs de publicaciones".</p>
+        <p data-lang="ca">Acompanyament estrategic recurrent: optimitzacio continua, campanyes, contingut, informe mensual i reunio de revisio. Sense "packs de publicacions".</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── KIT EXCLUSIVO (anteriormente TOOLS) ── -->
+<section class="tools" id="kit">
+  <div class="section-inner">
+    <span class="section-label label-coral" data-lang="es">Mi diferenciador</span>
+    <span class="section-label label-coral" data-lang="ca">El meu diferenciador</span>
+
+    <h2 class="section-title" data-lang="es">El kit tecnologico<br>que <em style="color:var(--coral);font-style:normal">solo recibes conmigo</em></h2>
+    <h2 class="section-title" data-lang="ca">El kit tecnologic<br>que <em style="color:var(--coral);font-style:normal">nomes reps amb mi</em></h2>
+
+    <p class="section-sub" data-lang="es" style="margin-bottom:4rem">Tres herramientas exclusivas incluidas en la gestion mensual. Tus clientes nunca han visto algo asi, y ningun consultor te lo va a dar. Las activas tu mismo, en minutos.</p>
+    <p class="section-sub" data-lang="ca" style="margin-bottom:4rem">Tres eines exclusives incloses en la gestio mensual. Els teus clients mai han vist res aixi, i cap consultor no t'ho donara. Les actives tu mateix, en minuts.</p>
 
     <div class="tools-list">
 
@@ -717,43 +864,92 @@
   </div>
 </section>
 
-<!-- ── HOW ── -->
-<section class="how" id="proceso">
+<!-- ── METODO ── -->
+<section class="how" id="metodo">
   <div class="section-inner">
-    <span class="section-label label-teal" data-lang="es">Proceso</span>
-    <span class="section-label label-teal" data-lang="ca">Proces</span>
+    <span class="section-label label-teal" data-lang="es">Mi metodo</span>
+    <span class="section-label label-teal" data-lang="ca">El meu metode</span>
 
-    <h2 class="section-title" data-lang="es">Empezar es mas facil<br>de lo que crees</h2>
-    <h2 class="section-title" data-lang="ca">Comencar es mes facil<br>del que creus</h2>
+    <h2 class="section-title" data-lang="es">Primero entendemos el negocio.<br>Despues decidimos <em style="color:var(--teal);font-style:normal">que canales tienen sentido</em>.<br>Y solo entonces ejecutamos.</h2>
+    <h2 class="section-title" data-lang="ca">Primer entenem el negoci.<br>Despres decidim <em style="color:var(--teal);font-style:normal">quins canals tenen sentit</em>.<br>I nomes llavors executem.</h2>
 
     <div class="steps-grid">
       <div class="step reveal">
         <div class="step-num">1</div>
-        <h3 data-lang="es">Consulta gratuita</h3>
-        <h3 data-lang="ca">Consulta gratuita</h3>
-        <p data-lang="es">30 minutos para entender tu situacion y ver que herramientas te convienen.</p>
-        <p data-lang="ca">30 minuts per entendre la teva situacio i veure quines eines t'interessen.</p>
+        <h3 data-lang="es">Diagnostico</h3>
+        <h3 data-lang="ca">Diagnostic</h3>
+        <p data-lang="es">Analizo donde estas: Google Business Profile, Maps, web, redes, publicidad, resenas, competencia local y datos disponibles.</p>
+        <p data-lang="ca">Analitzo on ets: Google Business Profile, Maps, web, xarxes, publicitat, ressenyes, competencia local i dades disponibles.</p>
       </div>
       <div class="step reveal reveal-d1">
         <div class="step-num">2</div>
-        <h3 data-lang="es">Auditoria</h3>
-        <h3 data-lang="ca">Auditoria</h3>
-        <p data-lang="es">Analizamos tu ficha de Google, web y resenas. Detectamos que falta y que priorizar.</p>
-        <p data-lang="ca">Analitzem la teva fitxa de Google, web i ressenyes. Detectem que falta i que prioritzar.</p>
+        <h3 data-lang="es">Estrategia</h3>
+        <h3 data-lang="ca">Estrategia</h3>
+        <p data-lang="es">Defino que acciones tienen mas sentido segun el momento del negocio: visibilidad, reservas, trafico, eventos o temporada.</p>
+        <p data-lang="ca">Defineixo quines accions tenen mes sentit segons el moment del negoci: visibilitat, reserves, transit, esdeveniments o temporada.</p>
       </div>
       <div class="step reveal reveal-d2">
         <div class="step-num">3</div>
-        <h3 data-lang="es">Activacion</h3>
-        <h3 data-lang="ca">Activacio</h3>
-        <p data-lang="es">Activamos las herramientas desde tu panel en minutos. Sin tecnicismos, sin complicaciones.</p>
-        <p data-lang="ca">Activem les eines des del teu panell en minuts. Sense tecnicismes, sense complicacions.</p>
+        <h3 data-lang="es">Implementacion</h3>
+        <h3 data-lang="ca">Implementacio</h3>
+        <p data-lang="es">Pasamos a la accion: optimizacion del perfil de Google, contenido, campanas, medicion, publicaciones, landing pages y creatividades.</p>
+        <p data-lang="ca">Passem a l'accio: optimitzacio del perfil de Google, contingut, campanyes, medicio, publicacions, landing pages i creativitats.</p>
       </div>
       <div class="step reveal reveal-d3">
         <div class="step-num">4</div>
-        <h3 data-lang="es">Seguimiento</h3>
-        <h3 data-lang="ca">Seguiment</h3>
-        <p data-lang="es">Revisamos resultados cada mes, ajustamos estrategia y te informamos de todo.</p>
-        <p data-lang="ca">Revisem resultats cada mes, ajustem estrategia i t'informem de tot.</p>
+        <h3 data-lang="es">Medicion y mejora</h3>
+        <h3 data-lang="ca">Medicio i millora</h3>
+        <p data-lang="es">Revisamos que ha funcionado, que busquedas crecen, que campanas aportan valor y donde aparecen las nuevas oportunidades.</p>
+        <p data-lang="ca">Revisem que ha funcionat, quines cerques creixen, quines campanyes aporten valor i on apareixen les noves oportunitats.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CASOS ── -->
+<section class="cases" id="casos">
+  <div class="section-inner">
+    <span class="section-label label-coral" data-lang="es">Casos &middot; Experiencia</span>
+    <span class="section-label label-coral" data-lang="ca">Casos &middot; Experiencia</span>
+
+    <h2 class="section-title" data-lang="es">Proyectos en los que<br><em style="color:var(--coral);font-style:normal">he construido visibilidad real</em></h2>
+    <h2 class="section-title" data-lang="ca">Projectes on<br><em style="color:var(--coral);font-style:normal">he construit visibilitat real</em></h2>
+
+    <p class="section-sub" data-lang="es" style="margin-bottom:3.5rem">Sin nombres porque la confidencialidad es parte del trato. Pero esto es lo que he trabajado:</p>
+    <p class="section-sub" data-lang="ca" style="margin-bottom:3.5rem">Sense noms perque la confidencialitat forma part del tracte. Pero aixo es el que he treballat:</p>
+
+    <div class="cases-grid">
+      <div class="case-card reveal">
+        <div class="case-tag" data-lang="es">Helado &middot; Gastronomia</div>
+        <div class="case-tag" data-lang="ca">Gelat &middot; Gastronomia</div>
+        <h3 data-lang="es">Heladeria artesanal libanesa en Barcelona</h3>
+        <h3 data-lang="ca">Gelateria artesanal libanesa a Barcelona</h3>
+        <p data-lang="es">Primera de su categoria en la ciudad. Posicionamiento diferencial, Google Business Profile, campanas locales en Meta, Google y TikTok Ads, contenido gastronomico y estrategia para atraer trafico al local.</p>
+        <p data-lang="ca">Primera de la seva categoria a la ciutat. Posicionament diferencial, Google Business Profile, campanyes locals a Meta, Google i TikTok Ads, contingut gastronomic i estrategia per atraure transit al local.</p>
+      </div>
+      <div class="case-card reveal reveal-d1">
+        <div class="case-tag" data-lang="es">Grupo de restaurantes &middot; Barceloneta</div>
+        <div class="case-tag" data-lang="ca">Grup de restaurants &middot; Barceloneta</div>
+        <h3 data-lang="es">Grupo de restauracion tradicional en Barceloneta</h3>
+        <h3 data-lang="ca">Grup de restauracio tradicional a la Barceloneta</h3>
+        <p data-lang="es">Google Business Profile multi-local, SEO local, landing pages por servicio, Google Ads, publicaciones y contenido pensado para grupos, menu mediodia, paella y experiencia gastronomica en Barcelona.</p>
+        <p data-lang="ca">Google Business Profile multi-local, SEO local, landing pages per servei, Google Ads, publicacions i contingut pensat per a grups, menu migdia, paella i experiencia gastronomica a Barcelona.</p>
+      </div>
+      <div class="case-card reveal reveal-d2">
+        <div class="case-tag" data-lang="es">Vino &middot; Comunicacion premium</div>
+        <div class="case-tag" data-lang="ca">Vi &middot; Comunicacio premium</div>
+        <h3 data-lang="es">Agencia boutique de vinos internacional</h3>
+        <h3 data-lang="ca">Agencia boutique de vins internacional</h3>
+        <p data-lang="es">Estrategia de LinkedIn, email marketing con HubSpot, posicionamiento internacional, comunicacion B2B y copywriting especializado en gastronomia y vino premium.</p>
+        <p data-lang="ca">Estrategia de LinkedIn, email marketing amb HubSpot, posicionament internacional, comunicacio B2B i copywriting especialitzat en gastronomia i vi premium.</p>
+      </div>
+      <div class="case-card reveal reveal-d3">
+        <div class="case-tag" data-lang="es">Turismo &middot; Experiencias gastronomicas</div>
+        <div class="case-tag" data-lang="ca">Turisme &middot; Experiencies gastronomiques</div>
+        <h3 data-lang="es">Plataforma turistica gastronomica de Barcelona</h3>
+        <h3 data-lang="ca">Plataforma turistica gastronomica de Barcelona</h3>
+        <p data-lang="es">Acuerdos con plataformas turisticas, posicionamiento de experiencias culinarias, captacion de publicos no locales y comunicacion para el mercado de turistas premium en Barcelona.</p>
+        <p data-lang="ca">Acords amb plataformes turistiques, posicionament d'experiencies culinaries, captacio de publics no locals i comunicacio per al mercat de turistes premium a Barcelona.</p>
       </div>
     </div>
   </div>
@@ -765,17 +961,17 @@
     <div class="about-inner">
       <div class="about-photo">&#x1F468;&#x200D;&#x1F373;</div>
       <div>
-        <span class="section-label label-teal" data-lang="es">Quien soy</span>
-        <span class="section-label label-teal" data-lang="ca">Qui soc</span>
+        <span class="section-label label-teal" data-lang="es">Sobre mi</span>
+        <span class="section-label label-teal" data-lang="ca">Sobre mi</span>
 
-        <h2 class="section-title" data-lang="es">Soy Xavi, especialista en marketing local para restauracion</h2>
-        <h2 class="section-title" data-lang="ca">Soc Xavi, especialista en marqueting local per a restauracio</h2>
+        <h2 class="section-title" data-lang="es">Soy <em style="color:var(--teal);font-style:normal">Xavi Moll</em>.<br>Marketing local para restaurantes<br>sin humo y con foco en negocio.</h2>
+        <h2 class="section-title" data-lang="ca">Soc <em style="color:var(--teal);font-style:normal">Xavi Moll</em>.<br>Marqueting local per a restaurants<br>sense fum i amb focus en negoci.</h2>
 
-        <p class="about-text" data-lang="es">Con mas de 5 anos en marketing digital y experiencia previa gestionando campanas publicitarias para grandes marcas en medios, hoy trabajo exclusivamente con restaurantes y bares que quieren crecer sin perderse en la tecnologia.</p>
-        <p class="about-text" data-lang="ca">Amb mes de 5 anys en marqueting digital i experiencia previa gestionant campanyes publicitaries per a grans marques en mitjans, avui treballo exclusivament amb restaurants i bars que volen creixer sense perdre's en la tecnologia.</p>
+        <p class="about-text" data-lang="es">Formacion en ADE con especializacion en marketing y mas de 5 anos gestionando cuentas publicitarias en medios. Conozco como funciona un restaurante en la practica: visibilidad local, reservas, ocupacion, resenas, ticket medio, dependencia de plataformas y competencia cercana.</p>
+        <p class="about-text" data-lang="ca">Formacio en ADE amb especialitzacio en marqueting i mes de 5 anys gestionant comptes publicitaris en mitjans. Conec com funciona un restaurant en la practica: visibilitat local, reserves, ocupacio, ressenyes, ticket mitja, dependencia de plataformes i competencia propera.</p>
 
-        <p class="about-text" data-lang="es">Conozco el sector de restauracion de Barcelona y se que el dueno de un restaurante no tiene tiempo para tecnicismos. Todo lo que hago esta pensado para que tu lo entiendas, lo controles y lo uses sin depender de nadie.</p>
-        <p class="about-text" data-lang="ca">Conec el sector de restauracio de Barcelona i se que el propietari d'un restaurant no te temps per a tecnicismes. Tot el que faig esta pensat perque tu ho entenguis, ho controlis i ho facis servir sense dependre de ningu.</p>
+        <p class="about-text" data-lang="es">Mi enfoque no es hacer "marketing 360&deg; omnicanal". Mi enfoque es construir sistemas de visibilidad local para restaurantes que quieren dejar de improvisar y empezar a captar clientes de forma medible. Todo lo que hago esta pensado para que lo entiendas, lo controles y lo uses sin depender de nadie.</p>
+        <p class="about-text" data-lang="ca">El meu enfocament no es fer "marqueting 360&deg; omnicanal". El meu enfocament es construir sistemes de visibilitat local per a restaurants que volen deixar d'improvisar i comencar a captar clients de manera mesurable. Tot el que faig esta pensat perque ho entenguis, ho controlis i ho facis servir sense dependre de ningu.</p>
 
         <div class="about-stats">
           <div class="stat">
@@ -790,8 +986,8 @@
           </div>
           <div class="stat">
             <div class="stat-num">BCN</div>
-            <div class="stat-label" data-lang="es">Especialista local</div>
-            <div class="stat-label" data-lang="ca">Especialista local</div>
+            <div class="stat-label" data-lang="es">Mercado local</div>
+            <div class="stat-label" data-lang="ca">Mercat local</div>
           </div>
         </div>
       </div>
@@ -801,18 +997,21 @@
 
 <!-- ── CTA FINAL ── -->
 <section class="cta-final" id="contacto">
-  <h2 data-lang="es">Listo para llenar<br><em>mas mesas</em>?</h2>
-  <h2 data-lang="ca">Preparat per omplir<br><em>mes taules</em>?</h2>
+  <span class="section-label label-teal" data-lang="es" style="display:inline-block">Diagnostico inicial</span>
+  <span class="section-label label-teal" data-lang="ca" style="display:inline-block">Diagnostic inicial</span>
 
-  <p data-lang="es">Primera consulta gratuita, sin compromiso.<br>Te cuento exactamente que necesita tu restaurante.</p>
-  <p data-lang="ca">Primera consulta gratuita, sense compromis.<br>Et dic exactament que necessita el teu restaurant.</p>
+  <h2 data-lang="es">Si tu restaurante no aparece<br>cuando un cliente busca,<br><em>esa reserva se la lleva otro.</em></h2>
+  <h2 data-lang="ca">Si el teu restaurant no apareix<br>quan un client busca,<br><em>aquesta reserva se l'enduu un altre.</em></h2>
+
+  <p data-lang="es">El diagnostico inicial es la puerta de entrada. Reviso tu Google Business Profile, tu presencia digital, tu competencia local y te entrego un plan de accion priorizado en menos de una semana.</p>
+  <p data-lang="ca">El diagnostic inicial es la porta d'entrada. Reviso el teu Google Business Profile, la teva presencia digital, la teva competencia local i et lliuro un pla d'accio prioritzat en menys d'una setmana.</p>
 
   <div class="cta-btns">
-    <a href="https://wa.me/34XXXXXXXXX" class="btn-primary" target="_blank" rel="noopener">
-      <span data-lang="es">Escribeme por WhatsApp</span><span data-lang="ca">Escriu-me per WhatsApp</span>
+    <a href="mailto:xavimollj@gmail.com?subject=Diagnostico%20GastroDigital%20Hub" class="btn-primary">
+      <span data-lang="es">Solicitar diagnostico</span><span data-lang="ca">Demanar diagnostic</span>
     </a>
-    <a href="mailto:xavimollj@gmail.com" class="btn-ghost">
-      <span data-lang="es">Enviar email</span><span data-lang="ca">Enviar email</span>
+    <a href="https://wa.me/34XXXXXXXXX" class="btn-ghost" target="_blank" rel="noopener">
+      <span data-lang="es">Hablar por WhatsApp</span><span data-lang="ca">Parlar per WhatsApp</span>
     </a>
   </div>
 </section>
@@ -821,7 +1020,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-copy">
-      &copy; 2026 Gastrodigital Hub &nbsp;&middot;&nbsp;
+      &copy; 2026 Xavi Moll &middot; GastroDigital Hub &nbsp;&middot;&nbsp;
       <a href="mailto:xavimollj@gmail.com">xavimollj@gmail.com</a> &nbsp;&middot;&nbsp;
       Barcelona
     </div>
